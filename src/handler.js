@@ -1,13 +1,14 @@
 'use strict';
+const { getCoffees } = require('./dynamoDB');
 
 module.exports.hello = async (event) => {
-  const random = Math.floor(Math.random() * 1000000);
-  console.log(`Hello World! ${random}`);
+  console.log('event running')
+  const coffees = await getCoffees();
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        randomNumber: random,
+        randomNumber: coffees,
         message: "this is a development environment"
       },
       null,

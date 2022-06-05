@@ -1,0 +1,9 @@
+{
+  "name": "serverless-repo",
+  "version": "1.0.0",
+  "author": "Umesh-malik-byjus <88026680+Umesh-malik-byjus@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1148.0"
+  }
+}
