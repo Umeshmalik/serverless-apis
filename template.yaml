@@ -22,7 +22,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource:
     Properties:
       FunctionName: getRandomNumber
-      Handler: src/random-number/handler.getRandomNumber
+      Handler: index.getRandomNumber
       Runtime: nodejs14.x
       Events:
         GetRandomNumber:

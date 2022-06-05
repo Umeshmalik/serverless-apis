@@ -1,4 +1,4 @@
-exports.getRandomNumber = function(event, context, callback) {
+const getRandomNumber = (event, callback) => {
     if (event.httpMethod !== 'GET') {
         throw new Error(`getRandomNumber only accept GET method, you tried: ${event.httpMethod}`);
     }
@@ -12,4 +12,8 @@ exports.getRandomNumber = function(event, context, callback) {
 
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
     callback(null, response);
+}
+
+module.exports = {
+    getRandomNumber
 }
