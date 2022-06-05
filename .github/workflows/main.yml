@@ -1,33 +1,33 @@
 name: deploy to lambda
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
-  deploy_source:
-    name: build and deploy lambda
+  build-deploy:
+    name: build and deploy lambda function
     strategy:
       matrix:
         node-version: [16.x]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - uses: aws-actions/setup-sam@v1
+        with:
+          version: 1.37.0
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install and build
-        run: |
-          npm ci
-          npm run build --if-present
-        env:
-          CI: true
-      - name: zip
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r ./bundle.zip ./
-      - name: default deploy
-        uses: appleboy/lambda-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: eu-west-1
-          function_name: my-function
-          zip_file: bundle.zip
+      - run: sam --version
+
+      - run: sam build -t template.yaml
+
+      - run : |
+                sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name serverless-api --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-zceuwfd2ajvw --capabilities CAPABILITY_IAM --region ap-south-1
