@@ -3,7 +3,7 @@ exports.getRandomNumber = function(event, context, callback) {
         throw new Error(`getRandomNumber only accept GET method, you tried: ${event.httpMethod}`);
     }
     
-    const randomNumber = Math.floor(Math.random() * 1000000);
+    const randomNumber = Math.floor(Math.random() * 100000);
 
     const response = {
         statusCode: 200,
