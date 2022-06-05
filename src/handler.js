@@ -2,11 +2,13 @@
 
 module.exports.hello = async (event) => {
   const random = Math.floor(Math.random() * 1000000);
+  console.log(`Hello World! ${random}`);
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        randomNumber: random
+        randomNumber: random,
+        message: "this is a development environment"
       },
       null,
       2
