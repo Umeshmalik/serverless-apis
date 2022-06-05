@@ -23,6 +23,7 @@ Resources:
     Properties:
       FunctionName: getRandomNumber
       Handler: src/random-number/handler.getRandomNumber
+      Runtime: nodejs14.x
       Events:
         GetRandomNumber:
           Type: Api # More info about API Event Source:

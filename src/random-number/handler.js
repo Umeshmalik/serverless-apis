@@ -1,4 +1,4 @@
-exports.getRandomNumber = function(event) {
+exports.getRandomNumber = function(event, context, callback) {
     if (event.httpMethod !== 'GET') {
         throw new Error(`getRandomNumber only accept GET method, you tried: ${event.httpMethod}`);
     }
@@ -11,5 +11,5 @@ exports.getRandomNumber = function(event) {
     };
 
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
-    return response;
+    callback(null, response);
 }
