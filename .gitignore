@@ -1,3 +1,6 @@
+# package directories
 node_modules
-.history
-yarn.lock
+jspm_packages
+
+# Serverless directories
+.serverless
