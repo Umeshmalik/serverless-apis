@@ -9,7 +9,7 @@ module.exports.hello = async (event) => {
     body: JSON.stringify(
       {
         coffees,
-        message: "this is a development environment"
+        message: "this is a development environment and it is going good"
       },
       null,
       2
