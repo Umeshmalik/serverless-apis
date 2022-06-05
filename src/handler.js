@@ -4,6 +4,7 @@ const { getCoffees } = require('./dynamoDB');
 module.exports.hello = async (event) => {
   console.log('event running')
   const coffees = await getCoffees();
+  
   return {
     statusCode: 200,
     body: JSON.stringify(
