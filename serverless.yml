@@ -13,7 +13,7 @@ functions:
     handler: src/handler.hello
     events:
       - httpApi:
-          path: /dev/users/create
+          path: /users/create
           method: get
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
