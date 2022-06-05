@@ -8,7 +8,7 @@ module.exports.hello = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        randomNumber: coffees,
+        coffees,
         message: "this is a development environment"
       },
       null,
